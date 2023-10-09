@@ -172,15 +172,16 @@ def main():
     th = 0.5  # theta 0-explicit, 0.5-central, 1-implicit  in time
 
     # Numerical solutions using the weighting functions
-
+    
+    """
     space_time_array_forward = space_time(th, 0, q_l, dl_i_eff, c0, layer_dx, n_layers, time_dt, n_timesteps, Upper_BC, Lower_BC)
     space_time_array_central = space_time(th, 0.5, q_l, dl_i_eff, c0, layer_dx, n_layers, time_dt, n_timesteps, Upper_BC, Lower_BC)
     space_time_array_backward = space_time(th, 1, q_l, dl_i_eff, c0, layer_dx, n_layers, time_dt, n_timesteps, Upper_BC, Lower_BC)
 
     plt.subplot(211)
     plt.title("c/c0 vs. distance")
-    # plt.plot(space_time_array_forward[time, :],label='forward')
-    #plt.plot(space_time_array_central[time, :], label='central')
+    plt.plot(space_time_array_forward[time, :],label='forward')
+    plt.plot(space_time_array_central[time, :], label='central')
     plt.plot(space_time_array_backward[time, :], label='backward')
     plt.legend(loc='best')
     plt.xlabel("distance")
@@ -189,9 +190,9 @@ def main():
     # plt.show()
 
     plt.subplot(212)
-    # plt.title("c/c0 vs. time ")
-    # plt.plot(space_time_array_forward[:, pnt],label='forward')
-    #plt.plot(space_time_array_central[:, pnt], label='central')
+    plt.title("c/c0 vs. time ")
+    plt.plot(space_time_array_forward[:, pnt],label='forward')
+    plt.plot(space_time_array_central[:, pnt], label='central')
     plt.plot(space_time_array_backward[:, pnt], label='backward')
     plt.legend(loc='best')
     plt.xlabel("time")
@@ -296,7 +297,7 @@ def main():
         plt.ylabel("concentration")
         plt.grid()
         plt.show()
-    """
+
 
     print("Done! Yay!")
 
