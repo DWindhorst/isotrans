@@ -49,6 +49,7 @@ class iso_layer(object):
         self.porosity = porosity
         self.tortuosity = tortuosity
 
+
     def delta_theta(self, ql):
         """
         Returns the change in theta based on the given flux in m3

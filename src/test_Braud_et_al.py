@@ -8,7 +8,7 @@ Created on 15.05.2023
 
 # -*- coding: utf-8 -*-
 
-
+import cmf
 import numpy as np
 
 from iso_time import iso_time
@@ -60,9 +60,9 @@ def main():
 
 def i_time():
 
-    time_i = iso_time(time_units='seconds',
-                      delta_time=60*60,  # must be in given time_units
-                      final_time=86400*300  # must be in given time units
+    time_i = iso_time(time_units='hours',
+                      delta_time=1,  # must be in given time_units
+                      final_time=24*300  # must be in given time units
                       )
     return time_i
 
