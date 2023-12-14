@@ -46,7 +46,7 @@ c = p.NewCell(0, 0, 0, 1000)
 
 # Customize cell
 # Top layer thickness of e10-5 m as per SISPAT_iso
-lower_boundaries_of_layer = [0.0001, 0.02, 0.03, 0.04, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55,
+lower_boundaries_of_layer = [0.00001, 0.02, 0.03, 0.04, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55,
                              0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1.00]
 
 
@@ -151,7 +151,7 @@ for t in solver.run(solver.t, end, dt):
     theta_layers.append(c.layers.wetness * c.layers.porosity)
 
     # Evaporation
-    E_pot = -1.005e-5  # kg/(m2*s)
+    E_pot = -1.005e-5 # kg/(m2*s)
 
     # calculate actual Evaporation for the next time step
     ha_surface = rH_atmosphere * iso_atmosphere.pv_sat(T_atmosphere) / iso_atmosphere.pv_sat(my_layers[0].T)
@@ -187,12 +187,12 @@ for solute in ['2H', '18O']:
             E_pot = -1.005e-5  # kg/(m2*s)
             # Boundary conditions
 
-            U_boundary_conc = iso.delta_to_concentration(delta_i=-0, solute_i='2H')
+            U_boundary_conc = iso.delta_to_concentration(delta_i=-65, solute_i='2H')
             L_boundary_conc = iso.delta_to_concentration(delta_i=-65, solute_i='2H')
 
             BC = BoundaryCondition()
             BC.upper_boundary('atmosphere', E_pot)  # neuman[flux] / dirichlet[constant conc] / atmosphere[potential evaporation]
-            BC.lower_boundary('dirichlet', L_boundary_conc)  # TODO: need to check lower boundary
+            BC.lower_boundary('neuman', 0)  # TODO: need to check lower boundary
 
             return BC
 

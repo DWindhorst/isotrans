@@ -135,12 +135,14 @@ def run_1D_model(cell, atmosphere, layers, Q, BC, solute,
                                                   T_atmosphere=atmosphere.T_atmosphere,
                                                   T_soil=layer.T)
 
+                rH_soil = theta_t0[0] / layer.porosity  # wetnes(humidity)s of the layer
+
                 qi_evap = q_i_Evaporation_Braud_old(E_pot=BC.upper_boundary_content,
                                                    alpha_i=alpha,
                                                    alpha_i_k=alpha_ik,
                                                    Rl_i_Soil=Rl_soil,
                                                    Rv_i_Atmosphere=Rv_atm,
-                                                   rH_Soil=cell.layers[0].wetness,
+                                                   rH_Soil=rH_soil,
                                                    rH_normalized_Atmosphere=rh_normalized,
                                                    solute_i=solute)
                 """
